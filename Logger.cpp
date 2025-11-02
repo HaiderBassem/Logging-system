@@ -19,25 +19,29 @@
 #include <filesystem>
 #include <cstdlib> 
 
+// singleton design pattern 
 Logger& Logger::instance(const std::string& filename)
 {
     static Logger instance(filename);
-    return instance;
+    return instance; 
 }
 
 Logger::Logger(const std::string& filename) : _stopRequested(false)
 {
     std::string basePath;
+    // check if the your OS windows or Linux or Mac OS
    #if defined(_WIN32)
         const char* userProfile = std::getenv("USERPROFILE");
         if(userProfile)
-            basePath = std::string(userProfile) + "\\Documents\\imgorg\\";
+            // you can custum your file path here  for windows 
+            basePath = std::string(userProfile) + "\\Documents\\";
         else
             basePath = ".\\";    
     #else
+    // you can custum your file path here  for Linux or Mac OS
         const char* home =std::getenv("HOME");
         if(home)
-            basePath = std::string(home) + "/Documents/imgorg/";
+            basePath = std::string(home) + "/Documents/";
         else
             basePath = "./";
     #endif            
@@ -67,13 +71,13 @@ Logger::~Logger()
         std::lock_guard<std::mutex> lock(_queueMutex);
         _stopRequested = true;
     }
-
+// notify all thread worker 
     _condition.notify_all();
     if (_workerThread.joinable())
         _workerThread.join();
 
     if (_logFile.is_open()) {
-        _logFile.flush();
+        _logFile.flush(); // conform all messages sotred in the file 
         _logFile.close();
     }
 }
@@ -88,7 +92,7 @@ void Logger::workerThread()
         });
 
         if (_stopRequested && _messageQueue.empty())
-            break;
+            break; 
 
         std::queue<std::string> messages;
         std::swap(_messageQueue, messages);

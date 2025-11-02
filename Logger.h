@@ -20,6 +20,7 @@
 class Logger
 {
 public:
+    // you need to custum your output file here           |   here    |
     static Logger& instance(const std::string& filename = "imgorg.log");
 
     void log(const std::string& msg);
