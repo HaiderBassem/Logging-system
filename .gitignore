@@ -1,0 +1,51 @@
+# ========================
+# CMake / Build files
+# ========================
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+CMakeLists.txt.user
+CMakeUserPresets.json
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+compile_commands.json
+Makefile
+_build/
+build/
+bin/
+*.out
+*.a
+*.so
+*.dll
+*.exe
+
+# ========================
+# IDEs
+# ========================
+# VSCode
+.vscode/
+
+# CLion / JetBrains
+.idea/
+*.iml
+
+# ========================
+# System files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# Logs / Temporary
+# ========================
+*.log
+*.tmp
+*.temp
+
+# ========================
+# Backup files
+# ========================
+*~
+*.swp
+*.swo
