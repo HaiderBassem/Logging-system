@@ -1,7 +1,4 @@
 # Logging-system
-Logger class written with C++ to be simple and efficient to logging errors, warning, debug and info.
-
-
 A high-performance, thread-safe, asynchronous logging system designed for real-world C++ projects.  
 
 ## Overview
